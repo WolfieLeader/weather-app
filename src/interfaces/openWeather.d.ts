@@ -1,5 +1,5 @@
 //https://openweathermap.org/api/one-call-3
-export interface IWeatherResponse {
+export interface IOpenWeather {
   timezone: string;
   timezone_offset: number;
   lat: number;
