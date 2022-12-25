@@ -3,7 +3,6 @@
   import suggestCities from "../utils/suggestCities";
   import type { ICityTimeZones } from "../interfaces/cityTimezones";
   import { weatherStore } from "../stores/weatherStore";
-  // const url = `https://openweathermap.org/data/2.5/onecall?lat=${payload.lat}&lon=${payload.lon}&units=metric&appid=${payload.appid}`;
 
   let value = "";
   let suggestedCities: ICityTimeZones[] = [];
@@ -14,14 +13,16 @@
   });
 
   const handleSelect = (city: ICityTimeZones) => {
-    weatherStore.set({
+    weatherStore.update((value) => ({
+      ...value,
       city: city.city,
       country: city.country,
       timezone: city.timezone,
-      latitude: city.lat,
-      longitude: city.lng,
-      currentTemp: 0,
-    });
+      coords: {
+        latitude: city.lat,
+        longitude: city.lng,
+      },
+    }));
   };
 </script>
 

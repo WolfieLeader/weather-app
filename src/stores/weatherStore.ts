@@ -4,7 +4,19 @@ export const weatherStore = writable({
   city: "",
   country: "",
   timezone: "",
-  latitude: 0,
-  longitude: 0,
-  currentTemp: 0,
+  coords: {
+    latitude: 0,
+    longitude: 0,
+  },
+  weather: {
+    current: {
+      temp: 0,
+      feels_like: 0,
+      humidity: 0,
+      wind_speed: 0,
+      sunrise: 0,
+      sunset: 0,
+      uvi: 0,
+    },
+  },
 });
