@@ -4,7 +4,7 @@ export interface IGeoDB {
   metadata: IGeoDBMetadata;
 }
 
-export interface IGeoDBData {
+interface IGeoDBData {
   id: number;
   wikiDataId: string;
   type: string;
@@ -18,12 +18,12 @@ export interface IGeoDBData {
   population: number;
 }
 
-export interface IGeoDBLinks {
+interface IGeoDBLinks {
   rel: "first" | "last" | "next";
   href: string;
 }
 
-export interface IGeoDBMetadata {
+interface IGeoDBMetadata {
   currentOffset: number;
   totalCount: number;
 }

@@ -1,18 +1,7 @@
 <script lang="ts">
-  import { Router, Route, Link } from "svelte-routing";
-  import Home from "./pages/Home.svelte";
-  import Test from "./pages/Test.svelte";
-
-  export let url = "";
+  import Search from "./components/Search.svelte";
 </script>
 
-<Router {url}>
-  <nav>
-    <Link to="/">Home</Link>
-    <Link to="test">Test</Link>
-  </nav>
-  <div>
-    <Route path="/"><Home /></Route>
-    <Route path="test" component={Test} />
-  </div>
-</Router>
+<main class="w-[70%] aspect-[16/9] bg-slate-200 rounded p-10">
+  <Search />
+</main>

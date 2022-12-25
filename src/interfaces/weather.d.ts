@@ -10,14 +10,14 @@ export interface IWeatherResponse {
   daily: IDaily[];
 }
 
-export interface IWeatherObj {
+interface IWeatherObj {
   description: string;
   icon: string;
   id: number;
   main: string;
 }
 
-export interface ICurrent {
+interface ICurrent {
   clouds: number;
   dew_point: number;
   dt: number;
@@ -34,12 +34,12 @@ export interface ICurrent {
   wind_speed: number;
 }
 
-export interface IMinutely {
+interface IMinutely {
   dt: number;
   precipitation: number;
 }
 
-export interface IHourly {
+interface IHourly {
   clouds: number;
   dew_point: number;
   dt: number;
@@ -56,7 +56,7 @@ export interface IHourly {
   wind_speed: number;
 }
 
-export interface IDaily {
+interface IDaily {
   clouds: number;
   dew_point: number;
   dt: number;
@@ -77,7 +77,7 @@ export interface IDaily {
   wind_speed: number;
 }
 
-export interface IPartsOfTheDay {
+interface IPartsOfTheDay {
   day: number;
   eve: number;
   morn: number;

@@ -1,4 +1,4 @@
-const debounce = (func: Function, delay: number = 500) => {
+const debounce = (func: Function, delay: number = 1000) => {
   let timer;
   return (...args: unknown[]) => {
     clearTimeout(timer);
