@@ -2,7 +2,7 @@
   import debounce from "../utils/debounce";
   import suggestCities from "../utils/suggestCities";
   import type { ICityTimeZones } from "../interfaces/cityTimezones";
-  import { weatherStore } from "../stores/weatherStore";
+  import { locationStore } from "../stores/locationStore";
 
   let value = "";
   let suggestedCities: ICityTimeZones[] = [];
@@ -13,8 +13,7 @@
   });
 
   const handleSelect = (city: ICityTimeZones) => {
-    weatherStore.update((value) => ({
-      ...value,
+    locationStore.set({
       city: city.city,
       country: city.country,
       timezone: city.timezone,
@@ -22,7 +21,7 @@
         latitude: city.lat,
         longitude: city.lng,
       },
-    }));
+    });
   };
 </script>
 

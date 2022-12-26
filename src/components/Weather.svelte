@@ -1,38 +1,49 @@
 <script lang="ts">
-  import axios from "axios";
-  import type { IOpenWeather } from "../interfaces/openWeather";
+  import { locationStore } from "../stores/locationStore";
   import { weatherStore } from "../stores/weatherStore";
+  import formatTime from "../utils/formatTime";
+  import getWeatherByCoords from "../utils/getWeatherByCoords";
 
-  const fetchWeather = async (latitude: number, longitude: number) => {
-    const { data } = (await axios.get("https://openweathermap.org/data/2.5/onecall", {
-      params: {
-        lat: latitude,
-        lon: longitude,
-        units: "metric",
-        appid: import.meta.env.VITE_OPEN_WEATHER_API_KEY,
+  locationStore.subscribe(async (value) => {
+    if (!value.coords) return;
+    const { data } = await getWeatherByCoords(value.coords, import.meta.env.VITE_OPEN_WEATHER_API_KEY);
+    weatherData = {
+      current: {
+        temp: data.current.temp,
+        feels_like: data.current.feels_like,
+        humidity: data.current.humidity,
+        wind_speed: data.current.wind_speed,
+        sunrise: formatTime(data.current.sunrise),
+        sunset: formatTime(data.current.sunset),
+        uvi: data.current.uvi,
       },
-    })) as { data: IOpenWeather };
-    weatherData.temp = data.current.temp;
-    weatherData.feels_like = data.current.feels_like;
-  };
-
-  weatherStore.subscribe((value) => {
-    const { latitude, longitude } = value.coords;
-    if (latitude && longitude) {
-      fetchWeather(latitude, longitude);
-    }
+    };
   });
 
   let weatherData = {
-    temp: 0,
-    feels_like: 0,
+    current: {
+      temp: 0,
+      feels_like: 0,
+      humidity: 0,
+      wind_speed: 0,
+      sunrise: "",
+      sunset: "",
+      uvi: 0,
+    },
   };
 </script>
 
 <div>
   <span class="text-lg font-semibold">Weather:</span>
   <div class="bg-white p-1 rounded w-fit">
-    <span>Temperature: {weatherData.temp}</span>
-    <span>Feels Like: {weatherData.feels_like}</span>
+    <ul>
+      <li>Temperature: {weatherData.current.temp}</li>
+      <li>Feels Like: {weatherData.current.feels_like}</li>
+      <li>Humidity: {weatherData.current.humidity}</li>
+      <li>Wind Speed: {weatherData.current.wind_speed}</li>
+      <li>Sunrise: {weatherData.current.sunrise}</li>
+      <li>Sunset: {weatherData.current.sunset}</li>
+      <li>UV Index: {weatherData.current.uvi}</li>
+    </ul>
   </div>
 </div>
