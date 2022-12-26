@@ -5,19 +5,20 @@
   import getWeatherByCoords from "../utils/getWeatherByCoords";
 
   locationStore.subscribe(async (value) => {
-    if (!value.coords) return;
-    const { data } = await getWeatherByCoords(value.coords, import.meta.env.VITE_OPEN_WEATHER_API_KEY);
-    weatherData = {
-      current: {
-        temp: data.current.temp,
-        feels_like: data.current.feels_like,
-        humidity: data.current.humidity,
-        wind_speed: data.current.wind_speed,
-        sunrise: formatTime(data.current.sunrise),
-        sunset: formatTime(data.current.sunset),
-        uvi: data.current.uvi,
-      },
-    };
+    if (value.coords) {
+      const { data } = await getWeatherByCoords(value.coords, import.meta.env.VITE_OPEN_WEATHER_API_KEY);
+      weatherData = {
+        current: {
+          temp: data.current.temp,
+          feels_like: data.current.feels_like,
+          humidity: data.current.humidity,
+          wind_speed: data.current.wind_speed,
+          sunrise: formatTime(data.current.sunrise),
+          sunset: formatTime(data.current.sunset),
+          uvi: data.current.uvi,
+        },
+      };
+    }
   });
 
   let weatherData = {

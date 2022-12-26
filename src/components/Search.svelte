@@ -6,11 +6,20 @@
 
   let value = "";
   let suggestedCities: ICityTimeZones[] = [];
+  let isFocused = false;
 
-  const handleChange = debounce((e) => {
+  const handleInput = debounce((e) => {
     value = e.target.value;
     suggestedCities = suggestCities(value).slice(0, 7);
   });
+  const handleFocus = () => {
+    isFocused = true;
+  };
+  const handleBlur = () => {
+    setTimeout(() => {
+      isFocused = false;
+    }, 100);
+  };
 
   const handleSelect = (city: ICityTimeZones) => {
     locationStore.set({
@@ -25,18 +34,20 @@
   };
 </script>
 
-<div>
-  <span class="text-3xl font-semibold text-slate-200">Search City:</span>
-  <div class="bg-slate-800 p-1 rounded w-fit text-slate-400 absolute">
+<div class="relative overflow-hidden">
+  <div class="text-3xl font-bold text-slate-200 mb-2">Search City:</div>
+  <div class="bg-slate-800 px-3 py-2 rounded-lg w-full text-slate-300 border-2 border-slate-300">
     <input
       type="text"
       {value}
-      on:input={handleChange}
+      on:input={handleInput}
+      on:focus={handleFocus}
+      on:blur={handleBlur}
       placeholder="Enter City Name"
-      class="w-full outline-none bg-transparent placeholder-slate-400 border-slate-700"
-      class:border-b-2={suggestedCities.length > 0}
+      class="w-full outline-none bg-transparent placeholder-slate-300 border-slate-700 text-lg font-semibold"
+      class:border-b-2={suggestedCities.length > 0 && isFocused}
     />
-    {#if suggestedCities.length > 0}
+    {#if suggestedCities.length > 0 && isFocused}
       <ul>
         {#each suggestedCities as city}
           <li>
