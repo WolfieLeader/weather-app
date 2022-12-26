@@ -5,7 +5,7 @@
 </script>
 
 <div class="z-10 w-full h-full flex flex-1 flex-col bg-slate-900 bg-opacity-90 px-5 py-10 ">
-  <main class="w-full p-5">
+  <main class="w-full p-5 flex flex-col">
     <Search />
     <Weather />
   </main>

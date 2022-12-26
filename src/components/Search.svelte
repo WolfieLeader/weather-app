@@ -3,6 +3,8 @@
   import suggestCities from "../utils/suggestCities";
   import type { ICityTimeZones } from "../interfaces/cityTimezones";
   import { locationStore } from "../stores/locationStore";
+  import { onMount } from "svelte";
+  import { getCityByTimezone } from "../utils/getCoords";
 
   let value = "";
   let suggestedCities: ICityTimeZones[] = [];
@@ -33,6 +35,21 @@
     };
     locationStore.set(formattedData);
   };
+
+  onMount(() => {
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const city = getCityByTimezone(timezone);
+    const formattedData = {
+      city: city.city,
+      country: city.country,
+      timezone: city.timezone,
+      coords: {
+        latitude: city.lat,
+        longitude: city.lng,
+      },
+    };
+    locationStore.set(formattedData);
+  });
 </script>
 
 <div class="relative mb-6">
