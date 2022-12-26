@@ -18,11 +18,11 @@
   const handleBlur = () => {
     setTimeout(() => {
       isFocused = false;
-    }, 100);
+    }, 200);
   };
 
   const handleSelect = (city: ICityTimeZones) => {
-    locationStore.set({
+    const formattedData = {
       city: city.city,
       country: city.country,
       timezone: city.timezone,
@@ -30,13 +30,14 @@
         latitude: city.lat,
         longitude: city.lng,
       },
-    });
+    };
+    locationStore.set(formattedData);
   };
 </script>
 
-<div class="relative overflow-hidden mb-6">
+<div class="relative mb-6">
   <div class="text-3xl font-bold text-slate-200 mb-2">Search City:</div>
-  <div class="bg-slate-800 px-3 py-2 rounded-lg w-full text-slate-300 border-2 border-slate-300">
+  <div class="bg-slate-800 px-3 py-2 rounded-lg w-full text-slate-300 border-2 border-slate-300 relative">
     <input
       type="text"
       {value}
@@ -48,12 +49,12 @@
       class:border-b-2={suggestedCities.length > 0 && isFocused}
     />
     {#if suggestedCities.length > 0 && isFocused}
-      <ul>
+      <ul class="z-40">
         {#each suggestedCities as city}
-          <li>
+          <li class="text-left text-lg font-semibold w-full px-0.5 py-1 mt-0.5">
             <button
-              class="text-left w-full px-0.5 py-1 mt-0.5 outline-none bg-transparent text-slate-400 hover:bg-slate-700 hover:text-slate-200"
-              on:click={() => handleSelect(city)}>{city.city}, {city.country}</button
+              class="outline-none bg-transparent text-slate-300 hover:bg-slate-700 hover:text-slate-200"
+              on:click|once={() => handleSelect(city)}>{city.city}, {city.country}</button
             >
           </li>
         {/each}

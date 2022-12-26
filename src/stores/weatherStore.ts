@@ -10,7 +10,7 @@ interface IWeatherStore {
     sunset: string;
     uvi: number;
     description: {
-      icon: string;
+      iconCode: string;
       main: string;
       details: string;
     } | null;

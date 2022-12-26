@@ -27,7 +27,7 @@ const getWeatherByCoords = async (coords: ICoords, openWeatherApiKey: string) =>
       sunset: formatTime(data.current.sunset),
       uvi: data.current.uvi,
       description: {
-        icon: data.current.weather[0].icon,
+        iconCode: data.current.weather[0].icon,
         main: data.current.weather[0].main,
         details: data.current.weather[0].description,
       },

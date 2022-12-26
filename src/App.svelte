@@ -1,7 +1,7 @@
 <script lang="ts">
   import Volcano from "./images/Volcano.png";
   import Search from "./components/Search.svelte";
-  import Weather from "./components/Weather.svelte";
+  import Weather from "./components/Weather/Weather.svelte";
 </script>
 
 <div class="z-10 w-full h-full flex flex-1 flex-col bg-slate-900 bg-opacity-90 px-5 py-10 ">
