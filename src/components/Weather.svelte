@@ -35,7 +35,7 @@
 
 <div>
   <span class="text-lg font-semibold">Weather:</span>
-  <div class="bg-white p-1 rounded w-fit">
+  <div class="bg-slate-800 p-1 rounded w-fit">
     <ul>
       <li>Temperature: {weatherData.current.temp}</li>
       <li>Feels Like: {weatherData.current.feels_like}</li>
