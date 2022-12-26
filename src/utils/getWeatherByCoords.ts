@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { IOpenWeather } from "../interfaces/openWeather";
 import { weatherStore } from "../stores/weatherStore";
-import formatTime from "./formatTime";
+import { formatDay, formatHour } from "./formatTime";
 
 interface ICoords {
   latitude: number;
@@ -23,8 +23,8 @@ const getWeatherByCoords = async (coords: ICoords, openWeatherApiKey: string) =>
       feels_like: data.current.feels_like,
       humidity: data.current.humidity,
       wind_speed: data.current.wind_speed,
-      sunrise: formatTime(data.current.sunrise),
-      sunset: formatTime(data.current.sunset),
+      sunrise: formatHour(data.current.sunrise),
+      sunset: formatHour(data.current.sunset),
       uvi: data.current.uvi,
       description: {
         iconCode: data.current.weather[0].icon,
@@ -34,6 +34,7 @@ const getWeatherByCoords = async (coords: ICoords, openWeatherApiKey: string) =>
     },
     daily: data.daily.map((day) => {
       return {
+        day: formatDay(day.dt),
         temp: {
           day: day.temp.day,
           night: day.temp.night,
@@ -43,6 +44,11 @@ const getWeatherByCoords = async (coords: ICoords, openWeatherApiKey: string) =>
         feels_like: {
           day: day.feels_like.day,
           night: day.feels_like.night,
+        },
+        description: {
+          iconCode: day.weather[0].icon,
+          main: day.weather[0].main,
+          details: day.weather[0].description,
         },
       };
     }),

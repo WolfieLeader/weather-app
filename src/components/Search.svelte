@@ -51,9 +51,9 @@
     {#if suggestedCities.length > 0 && isFocused}
       <ul class="z-40">
         {#each suggestedCities as city}
-          <li class="text-left text-lg font-semibold w-full px-0.5 py-1 mt-0.5">
+          <li class="w-full mt-0.5">
             <button
-              class="outline-none bg-transparent text-slate-300 hover:bg-slate-700 hover:text-slate-200"
+              class="w-full px-1 py-2 text-lg text-left font-semibold outline-none bg-transparent text-slate-300 hover:bg-slate-700 hover:text-slate-200"
               on:click|once={() => handleSelect(city)}>{city.city}, {city.country}</button
             >
           </li>

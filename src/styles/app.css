@@ -74,3 +74,15 @@ svg {
   width: 3.5rem;
   height: 3.5rem;
 }
+
+.dailyWeather svg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+@media (max-width: 420px) {
+  .dailyWeather svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}

@@ -16,6 +16,7 @@ interface IWeatherStore {
     } | null;
   };
   daily: {
+    day: string;
     temp: {
       day: number;
       night: number;
@@ -26,6 +27,11 @@ interface IWeatherStore {
       day: number;
       night: number;
     };
+    description: {
+      iconCode: string;
+      main: string;
+      details: string;
+    } | null;
   }[];
 }
 

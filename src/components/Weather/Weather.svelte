@@ -3,6 +3,7 @@
   import { weatherStore } from "../../stores/weatherStore";
   import getWeatherByCoords from "../../utils/getWeatherByCoords";
   import Advanced from "./Advanced.svelte";
+  import Daily from "./Daily.svelte";
   import Main from "./Main.svelte";
   import SunPhases from "./SunPhases.svelte";
 
@@ -27,6 +28,7 @@
       <Advanced className="hidden md:flex" />
       <SunPhases />
       <Advanced className="flex md:hidden" />
+      <Daily />
     </div>
   {/if}
 </div>
