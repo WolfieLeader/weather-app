@@ -34,7 +34,7 @@
   };
 </script>
 
-<div class="relative overflow-hidden">
+<div class="relative overflow-hidden mb-6">
   <div class="text-3xl font-bold text-slate-200 mb-2">Search City:</div>
   <div class="bg-slate-800 px-3 py-2 rounded-lg w-full text-slate-300 border-2 border-slate-300">
     <input
