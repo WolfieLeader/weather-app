@@ -9,7 +9,7 @@
 
   locationStore.subscribe((value) => {
     if (value.coords) {
-      getWeatherByCoords(value.coords, import.meta.env.VITE_OPEN_WEATHER_API_KEY);
+      getWeatherByCoords(value.coords, import.meta.env.VITE_OPEN_WEATHER_API_KEY || "439d4b804bc8187953eb36d2a8c26a02");
     }
   });
 </script>
